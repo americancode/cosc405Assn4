@@ -1,0 +1,9 @@
+(deffacts order1
+    (item (name milk) (bottle yes) (size 4) (crushable no))
+    (item (name granola) (bottle no) (size 4) (crushable no))
+    (item (name bread) (bottle no) (size 2) (crushable yes))
+    (item (name tuna) (bottle no) (size 1) (crushable no))
+    (item (name iceCream) (bottle no) (size 2) (crushable no))
+    (item (name glop) (bottle no) (size 1) (crushable no))
+    (item (name pepsi) (bottle yes) (size 4) (crushable no))
+)
