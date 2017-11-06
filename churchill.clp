@@ -11,28 +11,6 @@
     (slot bottle)
 )
 
-(deffacts order2
-    (item (name granola1) (bottle no) (size 4) (crushable no))
-    (item (name granola2) (bottle no) (size 4) (crushable no))
-    (item (name granola3) (bottle no) (size 4) (crushable no))
-    (item (name tuna1) (bottle no) (size 1) (crushable no))
-    (item (name tuna2) (bottle no) (size 1) (crushable no))
-    (item (name tuna3) (bottle no) (size 1) (crushable no))
-    (item (name tuna4) (bottle no) (size 1) (crushable no))
-    (item (name iceCream1) (bottle no) (size 2) (crushable no))
-    (item (name iceCream2) (bottle no) (size 2) (crushable no))
-    (item (name bread1) (bottle no) (size 2) (crushable yes))
-    (item (name bread2) (bottle no) (size 2) (crushable yes))
-    (item (name potato-chips) (bottle no) (size 2) (crushable yes))
-    (item (name glop1) (bottle no) (size 1) (crushable no))
-    (item (name glop2) (bottle no) (size 1) (crushable no))
-    (item (name glop) (bottle no) (size 1) (crushable no))
-    (item (name milk1) (bottle yes) (size 4) (crushable no))
-    (item (name milk2) (bottle yes) (size 4) (crushable no))
-
-
-
-)
 
 ;Checking the order
 (defrule start
@@ -41,8 +19,8 @@
     (printout t "Select order (1 or 2): ")
     (bind ?order (read))
     (if (eq ?order 1)
-            then (load "order1.txt")
-            else (load "order2.txt")
+            then (load-facts "order1.txt")
+            else (load-facts "order2.txt")
     )
     (printout t crlf)
     (retract ?i)
@@ -204,7 +182,7 @@
 )
 
 ;Rules for bagging crushable items
-(defrule B15
+(defrule B14
     (step bag-crushable-items)
     ?item <- (item (name ?iName) (crushable yes)) ;a crushable item
     ?bag <- (bag (number ?bNumber) (weight ?bWeight) (bottle ?bot)) ;a bag with room for a medium item
@@ -217,9 +195,9 @@
 )
 
 
-(defrule B14 ;Rule for making new bag
+(defrule B15 ;Rule for making new bag
     (step bag-crushable-items)
-    ?item <- (item (crushable yes)) ;a small item
+    ?item <- (item (crushable yes)) ;a crushable item
     ?bRule <- (lastBagNum ?bn)
     =>
     (printout t crlf)
